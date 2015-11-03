@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" type="text/css" href="styles/main.css" />
+    <script type="text/javascript" src="scripts/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="scripts/ajaxfileupload.js"></script>
+    <title>新增主题</title>
+</head>
+<body>
+<!--左边 展示框-->
+    <div class="leftblock" contenteditable="true">
+        <p id="topicTitle" style="border: 1px solid black" contenteditable="false"></p>
+        <p id="topicOverview" style="border: 1px solid black" contenteditable="false"></p>
+
+    </div>
+<!--中间 主题名称、介绍添加；图片、文字插入-->
+    <table class="centreblock" border="1">
+        <!--主题名称-->
+        <tr style="height: 1em">
+            <td>主题名称：</td>
+            <td><input type="text" id="titleOfTopic" autofocus="autofocus" /></td>
+        </tr>
+        <!--主题简介-->
+        <tr style="height: 5em">
+            <td>主题简介：</td>
+            <td><textarea id="overviewOfTopic" autofocus="autofocus" style="height: 100%"></textarea></td>
+        </tr>
+        <!--图片插入-->
+        <tr style="height: 5em">
+            <td>
+                <a href="javascript:" class="file">选择图片
+                    <input type="file" name="fileimg" id="fileimg">
+                </a>
+                <input type="button" id="imagePush" value="图片上传" />
+                <button type="button" id="imageAdd" >图片插入</button>
+            </td>
+            <td>
+                <img id="imagePreview"  style="height: 5em"/>
+            </td>
+
+        </tr>
+        <!--文字插入-->
+        <tr>
+            <td>
+                <button type="button" id="textSubmit">文字插入</button>
+            </td>
+
+            <td><textarea id="textAdd" autofocus="autofocus" style="height: 100%"></textarea></td>
+        </tr>
+    </table>
+<!--右边 列表添加-->
+    <table class="rightblock" border="1">
+        <tr style="height: 1em">
+            <td></td>
+            <td><input type="text" placeholder="搜索" autofocus></td>
+        </tr>
+        <tr style="height: 1em">
+            <td>ID</td>
+            <td>酒店名称</td>
+        </tr>
+        <tr>
+            <td><div></div></td>
+            <td><div></div></td>
+        </tr>
+        <tr style="height: 1em">
+            <td>操作</td>
+            <td>
+                <button>上移</button>
+                <button>下移</button>
+                <button>删除</button>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    <table class="totalButton">
+        <tr>
+            <td><button id="deleteNode">删除节点</button></td>
+            <td><button>取消编辑</button></td>
+            <td><button id="topicSave">保存主题</button></td>
+        </tr>
+    </table>
+<script type="text/javascript" src="scripts/main.js"></script>
+</body>
+</html>
