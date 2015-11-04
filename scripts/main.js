@@ -125,26 +125,6 @@ function doUpload(){
     })
 };
 
-//遍历 div.leftblock 把数据存入数组
-var topicContent = new Array();
-var topicMark = new Array();
-
-$(document).ready(function(){
-    $("button#topicSave").click(function() {
-        //console.log($("div.leftblock").children());
-        for (var i = 0; i < $("div.leftblock").children().length; i++){
-            console.log($("div.leftblock *").eq(i))
-            if($("div.leftblock *").eq(i).text().length>0){
-                topicContent.push($("div.leftblock *").eq(i).text());
-                topicMark.push(0);
-            }else{
-                topicContent.push($("div.leftblock *").eq(i)[0].src);
-                topicMark.push(1);
-            }
-
-        };
-    })
-});
 
 //搜索酒店
 function topic_searchhotel(hotelname){
@@ -204,52 +184,71 @@ function topic_items_removeit(){
     $('#topic_items').datagrid('deleteRow', index);
 }
 
+//遍历 div.leftblock 把数据存入数组
+var topicContent = new Array();
+var topicMark = new Array();
+$(document).ready(function(){
+    $("button#topicSave").click(function() {
+        console.log($("div.leftblock").html());
+        //for (var i = 0; i < $("div.leftblock").children().length; i++){
+        //    console.log($("div.leftblock *").eq(i))
+        //    if($("div.leftblock *").eq(i).text().length>0){
+        //        topicContent.push($("div.leftblock *").eq(i).text());
+        //        topicMark.push(0);
+        //    }else{
+        //        topicContent.push($("div.leftblock *").eq(i)[0].src);
+        //        topicMark.push(1);
+        //    }
+        //};
+    })
+});
+
 //提交主题
-//function submitNewTopic(){
-//    //提交基本信息
-//    if( checkTopicform() ==false)
-//        return;
-//
-//    $('#newtopic_baseinfo').form('submit', {
-//        url:'addnewtopic.json',
-//        success:function(data){
-//            var result = eval('('+data+')');
-//            if( result.topicId > 0  ){
-//
-//                submitTopicItems(result.topicId);
-//
-//                parent.$("#topic_listdg").datagrid('reload');
-//
-//                $.messager.confirm("提示", '提交成功,是否关闭当前窗口？', function (data) {
-//                    if (data) {
-//                        parent.$('#topic_window').window('close');
-//                    }
-//                    else {
-//                        //把新proID纪录下来，避免再次提交时重复新增
-//                        $('#topicId').val(result.topicId );
-//                    }
-//                });
-//            }
-//            else{
-//                $.messager.show({
-//                    title:'提示',
-//                    msg:'提交失败.',
-//                    timeout:20000,
-//                    showType:'slide'
-//                });
-//            }
-//        },
-//        error : function() {
-//            $.messager.show({
-//                title:'提示',
-//                msg:'提交失败.',
-//                timeout:20000,
-//                showType:'slide'
-//            });
-//        }
-//    });
-//
-//}
+function submitNewTopic(){
+    //提交基本信息
+    if( checkTopicform() ==false)
+        return;
+
+    $('#newtopic_baseinfo').form('submit', {
+        url:'addnewtopic.json',
+        success:function(data){
+            var result = eval('('+data+')');
+            if( result.topicId > 0  ){
+
+                submitTopicItems(result.topicId);
+
+                parent.$("#topic_listdg").datagrid('reload');
+
+                $.messager.confirm("提示", '提交成功,是否关闭当前窗口？', function (data) {
+                    if (data) {
+                        parent.$('#topic_window').window('close');
+                    }
+                    else {
+                        //把新proID纪录下来，避免再次提交时重复新增
+                        $('#topicId').val(result.topicId );
+                    }
+                });
+            }
+            else{
+                $.messager.show({
+                    title:'提示',
+                    msg:'提交失败.',
+                    timeout:20000,
+                    showType:'slide'
+                });
+            }
+        },
+        error : function() {
+            $.messager.show({
+                title:'提示',
+                msg:'提交失败.',
+                timeout:20000,
+                showType:'slide'
+            });
+        }
+    });
+
+}
 
 //提交主题内酒店列表
 function submitTopicItems(topicId){
