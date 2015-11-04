@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" type="text/css" href="styles/main.css" />
-    <script type="text/javascript" src="scripts/jquery-1.4.2.js"></script>
+    <link rel="stylesheet" type="text/css" href="jquery-easyui-1.4.2/themes/default/easyui.css" />
+    <link rel="stylesheet" type="text/css" href="jquery-easyui-1.4.2/themes/icon.css" />
+    <link rel="stylesheet" type="text/css" href="jquery-easyui-1.4.2/demo/demo.css" />
+    <script type="text/javascript" src="jquery-easyui-1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery-easyui-1.4.2/jquery.easyui.min.js"></script>
     <script type="text/javascript" src="scripts/ajaxfileupload.js"></script>
     <title>新增主题</title>
 </head>
@@ -52,31 +56,62 @@
     </table>
 <!--右边 列表添加-->
     <table class="rightblock" border="1">
-        <tr style="height: 1em">
-            <td></td>
-            <td><input type="text" placeholder="搜索" autofocus></td>
-        </tr>
-        <tr style="height: 1em">
-            <td>ID</td>
-            <td>酒店名称</td>
-        </tr>
+        <!--搜索框-->
         <tr>
-            <td><div></div></td>
-            <td><div></div></td>
-        </tr>
-        <tr style="height: 1em">
-            <td>操作</td>
             <td>
-                <button>上移</button>
-                <button>下移</button>
-                <button>删除</button>
+                <!--<span class="textbox searchbox" style="width: 14em; height: 2em;">-->
+                    <!--<span class="textbox-addon textbox-addon-right" style="right: 0px;">-->
+                        <!--<a href="javascript:void(0)" class="textbox-icon searchbox-button" icon-index="0" tabindex="-1" style="width: 2em; height: 2em;"></a>-->
+                    <!--</span>-->
+                    <!--<input id="topic_searchvalue" name='topic_searchvalue' type="text" class="textbox-text validatebox-text textbox-prompt" autocomplete="off"  data-options="prompt:'请输入需添加的酒店名称',searcher:topic_searchhotel" style="margin-left: 0; margin-right: 1em; padding-top: 2px; padding-bottom: 2px; width: 222px;">-->
+                <!--</span>-->
+                <input id="topic_searchvalue" name='topic_searchvalue' class="easyui-searchbox" data-options="prompt:'请输入需添加的酒店名称',searcher:topic_searchhotel" style="width:200px"/>
             </td>
         </tr>
+        <!--搜索结果展示框-->
         <tr>
-            <td></td>
-            <td></td>
+            <td>
+                <table class="easyui-datagrid" id="topic_searchlist" style="width:220px;height:180px"
+                       data-options="singleSelect:true,collapsible:true,onDblClickRow: function (rowIndex, rowData) {
+
+                var rows = $('#topic_items').datagrid('getRows');
+                for(var i=0; i<rows.length; i++){
+                    if( rows[i].hotelId == rowData.hotelId ){
+                        $.messager.alert('提示','亲，该酒店已经入选','info');
+                        return;
+                    }
+                }
+                $('#topic_items').datagrid('insertRow',{index:0,row:rowData});
+            }">
+                    <thead>
+                    <tr>
+                        <th data-options="field:'hotelId'">ID</th>
+                        <th data-options="field:'hotelCname'">酒店名称</th>
+                    </tr>
+                    </thead>
+                </table>
+            </td>
+        </tr>
+        <!--操作栏目-->
+        <tr>
+            <td align="center">
+                <table class="easyui-datagrid" id="topic_items" style="width:220px;height:200px" data-options="singleSelect:true,collapsible:true,rownumbers:true,toolbar:'#topic_items_tb'">
+                <thead>
+                <tr>
+                    <th data-options="field:'hotelId',width:40">ID</th>
+                    <th data-options="field:'hotelCname',width:200">酒店名称</th>
+                </tr>
+                </thead>
+            </table>
+                <div id="topic_items_tb" style="height:auto;text-align:right">
+                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-arrow_up',plain:true" onclick="javascript:topic_items_moveup()">上移</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-arrow_down',plain:true" onclick="javascript:topic_items_movedown()">下移</a>
+                    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-cut',plain:true" onclick="javascript:topic_items_removeit()">删除</a>
+                </div>
+            </td>
         </tr>
     </table>
+<!--页面总按钮-->
     <table class="totalButton">
         <tr>
             <td><button id="deleteNode">删除节点</button></td>

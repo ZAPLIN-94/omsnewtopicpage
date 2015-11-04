@@ -146,3 +146,141 @@ $(document).ready(function(){
     })
 });
 
+//搜索酒店
+function topic_searchhotel(hotelname){
+
+    //var searchhotel = $.trim($('#topic_searchvalue').searchbox('getValue'))
+
+
+    if( hotelname.length<=0){
+        return;
+    }
+    $('#topic_searchlist').datagrid({url:'http://oms.jihelife.com:8080/oms/prom/gethotelbyname.json?',queryParams:{hname:hotelname} });
+}
+
+//上移 下移
+function topic_items_moveup(){
+    var row = $("#topic_items").datagrid('getSelected');
+    var index = $("#topic_items").datagrid('getRowIndex', row);
+    topicdgsort(index, 'up', 'topic_items');
+}
+function topic_items_movedown(){
+    var row = $("#topic_items").datagrid('getSelected');
+    var index = $("#topic_items").datagrid('getRowIndex', row);
+    topicdgsort(index, 'down', 'topic_items');
+}
+
+//easyui datagrid 排序，index当前行号，type：up、down
+function topicdgsort(index, type, gridname) {
+    if ("up" == type) {
+        if (index != 0) {
+            var toup = $('#' + gridname).datagrid('getData').rows[index];
+            var todown = $('#' + gridname).datagrid('getData').rows[index - 1];
+            $('#' + gridname).datagrid('getData').rows[index] = todown;
+            $('#' + gridname).datagrid('getData').rows[index - 1] = toup;
+            $('#' + gridname).datagrid('refreshRow', index);
+            $('#' + gridname).datagrid('refreshRow', index - 1);
+            $('#' + gridname).datagrid('selectRow', index - 1);
+        }
+    } else if ("down" == type) {
+        var rows = $('#' + gridname).datagrid('getRows').length;
+        if (index != rows - 1) {
+            var todown = $('#' + gridname).datagrid('getData').rows[index];
+            var toup = $('#' + gridname).datagrid('getData').rows[index + 1];
+            $('#' + gridname).datagrid('getData').rows[index + 1] = todown;
+            $('#' + gridname).datagrid('getData').rows[index] = toup;
+            $('#' + gridname).datagrid('refreshRow', index);
+            $('#' + gridname).datagrid('refreshRow', index + 1);
+            $('#' + gridname).datagrid('selectRow', index + 1);
+        }
+    }
+
+}
+
+//删除
+function topic_items_removeit(){
+    var row = $("#topic_items").datagrid('getSelected');
+    var index = $("#topic_items").datagrid('getRowIndex', row);
+    $('#topic_items').datagrid('deleteRow', index);
+}
+
+//提交主题
+//function submitNewTopic(){
+//    //提交基本信息
+//    if( checkTopicform() ==false)
+//        return;
+//
+//    $('#newtopic_baseinfo').form('submit', {
+//        url:'addnewtopic.json',
+//        success:function(data){
+//            var result = eval('('+data+')');
+//            if( result.topicId > 0  ){
+//
+//                submitTopicItems(result.topicId);
+//
+//                parent.$("#topic_listdg").datagrid('reload');
+//
+//                $.messager.confirm("提示", '提交成功,是否关闭当前窗口？', function (data) {
+//                    if (data) {
+//                        parent.$('#topic_window').window('close');
+//                    }
+//                    else {
+//                        //把新proID纪录下来，避免再次提交时重复新增
+//                        $('#topicId').val(result.topicId );
+//                    }
+//                });
+//            }
+//            else{
+//                $.messager.show({
+//                    title:'提示',
+//                    msg:'提交失败.',
+//                    timeout:20000,
+//                    showType:'slide'
+//                });
+//            }
+//        },
+//        error : function() {
+//            $.messager.show({
+//                title:'提示',
+//                msg:'提交失败.',
+//                timeout:20000,
+//                showType:'slide'
+//            });
+//        }
+//    });
+//
+//}
+
+//提交主题内酒店列表
+function submitTopicItems(topicId){
+
+    var alldata = $('#topic_items').datagrid('getData');
+
+    if (alldata.rows.length > 0)
+    {
+        var effectRow = JSON.stringify(alldata.rows);
+        $.ajax({
+            method : 'POST',
+            url : 'settopicitems.json?id='+topicId,
+            async : false,
+            dataType : 'json',
+            data:{data:effectRow},
+            success : function(data) {
+                $.messager.show({
+                    title:'提示',
+                    msg:'主题内酒店列表提交成功.',
+                    timeout:5000,
+                    showType:'slide'
+                });
+            },
+            error : function() {
+                $.messager.show({
+                    title:'提示',
+                    msg:'主题内酒店列表提交失败.',
+                    timeout:20000,
+                    showType:'slide'
+                });
+            }
+        });
+    }
+}

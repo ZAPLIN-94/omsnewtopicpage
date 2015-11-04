@@ -1,16 +1,18 @@
 *{
     padding: 0;
     margin: 0;
-    /*font-size: 1em;*/
 }
 .leftblock,.centreblock,.rightblock{
     margin: 1em;
-    width: 15em;
-    height: 24em;
+    width: 18em;
+    height: 28em;
     position: relative;
     float: left;
     top: 5em;
     left: 10em;
+    border-radius: 0.5em;
+}
+.leftblock{
     border: 1px solid black;
 }
 .leftblock{
@@ -18,8 +20,8 @@
 }
 .totalButton{
     position: relative;
-    top: 30em;
-    /*left: 10em;*/
+    top: 35em;
+    left: -25em;
 }
 button{
     height: 1em;
