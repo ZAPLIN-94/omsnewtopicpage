@@ -1,0 +1,128 @@
+*{
+    padding: 0;
+    margin: 0;
+    /*letter-spacing: 1px;*/
+    line-height: 1.5em;
+    font-size: 16px;
+    font-family: "Lantinghei SC","FZLanTingHei-R-GBK";
+}
+p#title{
+    width: 92%;
+    margin: 25px 4% 0 4%;
+    font-size: 22px;
+}
+p#author{
+    width: 92%;
+    margin: 5px 4% 10px 4%;
+    font-size: 12px;
+    color: #8c8c8c;
+}
+.image{
+    width: 92%;
+    margin: 5px 4% 5px 4%;
+}
+.text{
+    width: 92%;
+    margin: 15px 4% 15px 4%;
+    color: #4A4A4A;
+    font-size: 15px;
+}
+img#line{
+    width: 100%;
+    height: 4vw;
+    margin: 10px 0 0 0 ;
+}
+img#endLine{
+    width: 100%;
+}
+div.list{
+    position: relative;
+    width: 100vw;
+    height: 96vw;
+}
+img.listImage{
+    width: 100%;
+    position: relative;
+    left: 0;
+    top: 0;
+}
+
+p.price{
+    width: 36vw;
+    height: 9vw;
+    font-size: 19px;
+    color: white;
+    position: absolute;
+    top: 48vw;
+    left: 0;
+    vertical-align: middle;
+    text-align: center;
+    padding: 0.5% 0 0 0 ;
+}
+span.unit{
+    font-size: 12px;
+}
+img.priceBackground{
+    width: 36vw;
+    height: 9vw;
+    position: absolute;
+    top: 48vw;
+    left: 0;
+}
+img.tips{
+    width: 8.3vw;
+    position: absolute;
+    left: 3.2vw;
+    top: 66.67vw;
+}
+img.brand{
+    position: absolute;
+    top: 57.33vw;
+    left: 82.67vw;
+    width: 13.2vw;
+    z-index: 999;
+}
+p.distant{
+    font-size: 12px;
+    color: #8c8c8c;
+    position: absolute;
+    left: 14.5vw;
+    top: 67.5vw;
+}
+p.introDiscount{
+    width: 93.6%;
+    margin: 0 3.2% 0 3.2%;
+    font-size: 16px;
+    position: relative;
+    top: 7vw;
+}
+img.rank{
+    width: 25vw;
+    position: relative;
+    top: 7vw;
+    left: 3.2vw;
+    margin: 2.4% 0 2.4% 0;
+}
+p.discountStatus{
+    width: 75px;
+    font-size: 12px;
+    color: #8c8c8c;
+    position: relative;
+    float: right;
+    top: -1vw;
+}
+p.hotelName{
+    width: 95vw;
+    position: relative;
+    top: 8vw;
+    left: 3.2vw;
+}
+p.introHotel {
+    font-size: 12px;
+    color: #8c8c8c;
+    width: 93.6%;
+    margin: 0 3.2% 0 3.2%;
+    position: relative;
+    top: 9vw;
+    text-overflow: ellipsis;
+}
