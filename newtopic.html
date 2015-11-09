@@ -16,20 +16,32 @@
 <!--左边 展示框-->
     <div class="leftblock" contenteditable="true">
         <p id="topicTitle" style="border: 1px solid black" contenteditable="false"></p>
-        <p id="topicOverview" style="border: 1px solid black" contenteditable="false"></p>
+        <p id="topicSubtitle" style="border: 1px solid black" contenteditable="false"></p>
 
     </div>
-<!--中间 主题名称、介绍添加；图片、文字插入-->
+<!--中间 主题名称、副标题添加；图片、文字插入-->
     <table class="centreblock" border="1">
         <!--主题名称-->
         <tr style="height: 1em">
             <td>主题名称：</td>
             <td><input type="text" id="titleOfTopic" autofocus="autofocus" /></td>
         </tr>
-        <!--主题简介-->
+        <!--副标题-->
         <tr style="height: 5em">
-            <td>主题简介：</td>
-            <td><textarea id="overviewOfTopic" autofocus="autofocus" style="height: 100%"></textarea></td>
+            <td>副标题：</td>
+            <td><textarea id="subtitleOfTopic" autofocus="autofocus" style="height: 100%"></textarea></td>
+        </tr>
+        <!--首图-->
+        <tr style="height: 5em">
+            <td>
+                <a href="javascript:" class="file">选择图片
+                    <input type="file" name="topfileimg" id="topfileimg">
+                </a>
+                <input type="button" id="topimagePush" value="图片上传" />
+            </td>
+            <td>
+                <img id="topimagePreview"  style="height: 5em"/>
+            </td>
         </tr>
         <!--图片插入-->
         <tr style="height: 5em">

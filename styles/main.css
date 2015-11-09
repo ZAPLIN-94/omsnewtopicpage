@@ -14,8 +14,6 @@
 }
 .leftblock{
     border: 1px solid black;
-}
-.leftblock{
     overflow-y: scroll;
 }
 .totalButton{

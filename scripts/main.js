@@ -7,13 +7,13 @@ $(document).ready(function(){
         $("#topicTitle").append(topicTitle);
     })
 });
-//左边展示框获取主题简介
+//左边展示框获取副标题
 $(document).ready(function(){
-    $("#overviewOfTopic").blur(function(){
-         $("#topicOverview").empty();
-            var topicOverview = $("#overviewOfTopic").val();
-            //console.log(topicOverview);
-            $("#topicOverview").append(topicOverview);
+    $("#subtitleOfTopic").blur(function(){
+         $("#topicSubtitle").empty();
+            var topicSubtitle = $("#subtitleOfTopic").val();
+            //console.log(topicSubtitle);
+            $("#topicSubtitle").append(topicSubtitle);
         }
     )
 });
@@ -38,7 +38,7 @@ $(document).ready(function(){
             $("#textAdd").val("");
         }
     })
-    $("#topicOverview").click(pickp);
+    $("#topicSubtitle").click(pickp);
 });
 
 //点击插入图片
@@ -90,7 +90,7 @@ function pickimg(){
 //删除选中项
 $(document).ready(function(){
     $("#deleteNode").click(function(){
-        if($("p[name=picked]").length!==0&&$("p[name=picked]").attr("id")!=="topicOverview"){
+        if($("p[name=picked]").length!==0&&$("p[name=picked]").attr("id")!=="topicSubtitle"){
             $("p[name=picked]").remove();
         };
         if($("img[name=picked]").length!==0){
@@ -125,6 +125,31 @@ function doUpload(){
     })
 };
 
+////首图上传
+$(document).ready(function(){
+    $("#topimagePush").click(function(){
+        doUpload();
+    })
+});
+var topimgurl;
+function doUpload(){
+    $.ajaxFileUpload({
+        url : 'http://oms.jihelife.com:8080/oms/prom/newimgfile.json',
+        secureuri : false,
+        fileElementId : "topfileimg",// 上传控件的id
+        dataType : 'json',
+        data : {fileID:"topfileimg"}, // 其它请求参数
+        success:function(data, status){
+            //图片上传成功，保存纪录
+            topimgurl = "http://7xio74.com2.z0.glb.clouddn.com/"+data.id;
+            $("#topimagePreview").attr("src",topimgurl);
+        },
+        error:function(data, status, e){
+            //服务器响应失败时的处理函
+            alert('提示','亲，图片上传失败了，赶紧去找程序猿！','error');
+        }
+    })
+};
 
 //搜索酒店
 function topic_searchhotel(hotelname){
