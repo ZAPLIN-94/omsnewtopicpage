@@ -2,10 +2,29 @@
     padding: 0;
     margin: 0;
 }
-.leftblock,.centreblock,.rightblock{
-    margin: 1em;
+.leftblock,.rightblock{
+    margin: 0.5em;
     width: 18em;
-    height: 28em;
+    height: 32em;
+    position: relative;
+    float: left;
+    top: 5em;
+    left: 10em;
+    border-radius: 0.5em;
+}
+.centreblock{
+    margin: 0.5em;
+    width: 18em;
+    height: 32em;
+    position: relative;
+    float: left;
+    top: 5em;
+    left: 10em;
+    border-radius: 0.5em;
+}
+.listDisplay{
+    margin: 0.5em;
+    width: 18em;
     position: relative;
     float: left;
     top: 5em;
@@ -18,8 +37,8 @@
 }
 .totalButton{
     position: relative;
-    top: 35em;
-    left: -25em;
+    /*top: 25em;*/
+    /*left: -8em;*/
 }
 button{
     height: 1em;

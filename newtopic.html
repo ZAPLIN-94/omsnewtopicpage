@@ -12,14 +12,15 @@
     <script type="text/javascript" src="scripts/ajaxfileupload.js"></script>
     <title>新增主题</title>
 </head>
-<body>
+
 <!--左边 展示框-->
     <div class="leftblock" contenteditable="true">
         <p id="topicTitle" style="border: 1px solid black" contenteditable="false"></p>
         <p id="topicSubtitle" style="border: 1px solid black" contenteditable="false"></p>
-
+        <p id="topicAuthor" style="border: 1px solid black" contenteditable="false"></p>
     </div>
 <!--中间 主题名称、副标题添加；图片、文字插入-->
+    <div>
     <table class="centreblock" border="1">
         <!--主题名称-->
         <tr style="height: 1em">
@@ -27,12 +28,17 @@
             <td><input type="text" id="titleOfTopic" autofocus="autofocus" /></td>
         </tr>
         <!--副标题-->
-        <tr style="height: 5em">
+        <tr style="height: 1em">
             <td>副标题：</td>
-            <td><textarea id="subtitleOfTopic" autofocus="autofocus" style="height: 100%"></textarea></td>
+            <td><input type="text" id="subtitleOfTopic" autofocus="autofocus" /></td>
+        </tr>
+        <!--作者-->
+        <tr style="height: 1em">
+            <td>作者：</td>
+            <td><input type="text" id="authorOfTopic" autofocus="autofocus" /></td>
         </tr>
         <!--首图-->
-        <tr style="height: 5em">
+        <tr style="height: 8em">
             <td>
                 <a href="javascript:" class="file">选择图片
                     <input type="file" name="topfileimg" id="topfileimg">
@@ -40,11 +46,11 @@
                 <input type="button" id="topimagePush" value="图片上传" />
             </td>
             <td>
-                <img id="topimagePreview"  style="height: 5em"/>
+                <img id="topimagePreview"  style="height: 8em;width: 10em"/>
             </td>
         </tr>
         <!--图片插入-->
-        <tr style="height: 5em">
+        <tr style="height: 8em">
             <td>
                 <a href="javascript:" class="file">选择图片
                     <input type="file" name="fileimg" id="fileimg">
@@ -53,34 +59,35 @@
                 <button type="button" id="imageAdd" >图片插入</button>
             </td>
             <td>
-                <img id="imagePreview"  style="height: 5em"/>
+                <img id="imagePreview"  style="height: 8em;width: 10em"/>
             </td>
-
         </tr>
         <!--文字插入-->
-        <tr>
+        <tr style="height: 6em">
             <td>
                 <button type="button" id="textSubmit">文字插入</button>
             </td>
 
             <td><textarea id="textAdd" autofocus="autofocus" style="height: 100%"></textarea></td>
         </tr>
+        <td colspan="2">
+            <div class="totalButton">
+                <button id="deleteNode">删除节点</button>
+                <button>取消编辑</button>
+                <button id="topicSave">保存主题</button>
+            </div>
+        </td>
     </table>
+    </div>
 <!--右边 列表添加-->
     <table class="rightblock" border="1">
-        <!--搜索框-->
+        <!--酒店搜索框-->
         <tr>
             <td>
-                <!--<span class="textbox searchbox" style="width: 14em; height: 2em;">-->
-                    <!--<span class="textbox-addon textbox-addon-right" style="right: 0px;">-->
-                        <!--<a href="javascript:void(0)" class="textbox-icon searchbox-button" icon-index="0" tabindex="-1" style="width: 2em; height: 2em;"></a>-->
-                    <!--</span>-->
-                    <!--<input id="topic_searchvalue" name='topic_searchvalue' type="text" class="textbox-text validatebox-text textbox-prompt" autocomplete="off"  data-options="prompt:'请输入需添加的酒店名称',searcher:topic_searchhotel" style="margin-left: 0; margin-right: 1em; padding-top: 2px; padding-bottom: 2px; width: 222px;">-->
-                <!--</span>-->
                 <input id="topic_searchvalue" name='topic_searchvalue' class="easyui-searchbox" data-options="prompt:'请输入需添加的酒店名称',searcher:topic_searchhotel" style="width:200px"/>
             </td>
         </tr>
-        <!--搜索结果展示框-->
+        <!--酒店搜索结果展示框-->
         <tr>
             <td>
                 <table class="easyui-datagrid" id="topic_searchlist" style="width:220px;height:180px"
@@ -88,12 +95,17 @@
 
                 var rows = $('#topic_items').datagrid('getRows');
                 for(var i=0; i<rows.length; i++){
-                    if( rows[i].hotelId == rowData.hotelId ){
+                    if( rows[i].productId == rowData.hotelId ){
                         $.messager.alert('提示','亲，该酒店已经入选','info');
                         return;
                     }
                 }
-                $('#topic_items').datagrid('insertRow',{index:0,row:rowData});
+                $('#topic_items').datagrid('insertRow',{index:0,row:{
+                productId:rowData.hotelId,
+                productName:rowData.hotelCname
+                }
+                });
+
             }">
                     <thead>
                     <tr>
@@ -104,17 +116,50 @@
                 </table>
             </td>
         </tr>
-        <!--操作栏目-->
+        <!--优惠搜索框-->
+        <tr>
+            <td>
+                <input id="discount_searchvalue" name='discount_searchvalue' class="easyui-searchbox" data-options="prompt:'请输入需添加的优惠名称',searcher:discount_searchhotel" style="width:200px"/>
+            </td>
+        </tr>
+        <!--优惠搜索展示框-->
+        <tr>
+            <td>
+                <table class="easyui-datagrid" id="discount_searchlist" style="width:220px;height:180px"
+                       data-options="singleSelect:true,collapsible:true,onDblClickRow: function (rowIndex, rowData) {
+
+                var rows = $('#topic_items').datagrid('getRows');
+                for(var i=0; i<rows.length; i++){
+                    if( rows[i].productId == rowData.productId ){
+                        $.messager.alert('提示','亲，该优惠已经入选','info');
+                        return;
+                    }
+                }
+                $('#topic_items').datagrid('insertRow',{index:0,row:rowData});
+
+            }">
+                    <thead>
+                    <tr>
+                        <th data-options="field:'productId'">ID</th>
+                        <th data-options="field:'productName'">优惠名称</th>
+                    </tr>
+                    </thead>
+                </table>
+            </td>
+        </tr>
+    </table>
+<!--列表操作-->
+    <table class="listDisplay" border="1">
         <tr>
             <td align="center">
                 <table class="easyui-datagrid" id="topic_items" style="width:220px;height:200px" data-options="singleSelect:true,collapsible:true,rownumbers:true,toolbar:'#topic_items_tb'">
-                <thead>
-                <tr>
-                    <th data-options="field:'hotelId',width:40">ID</th>
-                    <th data-options="field:'hotelCname',width:200">酒店名称</th>
-                </tr>
-                </thead>
-            </table>
+                    <thead>
+                    <tr>
+                        <th data-options="field:'productId',width:40">ID</th>
+                        <th data-options="field:'productName',width:200">酒店/优惠名称</th>
+                    </tr>
+                    </thead>
+                </table>
                 <div id="topic_items_tb" style="height:auto;text-align:right">
                     <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-arrow_up',plain:true" onclick="javascript:topic_items_moveup()">上移</a>
                     <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-arrow_down',plain:true" onclick="javascript:topic_items_movedown()">下移</a>
@@ -123,14 +168,7 @@
             </td>
         </tr>
     </table>
-<!--页面总按钮-->
-    <table class="totalButton">
-        <tr>
-            <td><button id="deleteNode">删除节点</button></td>
-            <td><button>取消编辑</button></td>
-            <td><button id="topicSave">保存主题</button></td>
-        </tr>
-    </table>
+
 <script type="text/javascript" src="scripts/main.js"></script>
 </body>
 </html>
