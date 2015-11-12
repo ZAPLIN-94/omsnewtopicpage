@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
     <link rel="stylesheet" href="styles/mainfornewpage.css" type="text/css" />
-    <script type="text/javascript" src="scripts/listAdd.js"></script>
+    <script type="text/javascript" src="scripts/jquery-1.4.2.js"></script>
     <title></title>
 </head>
 <body>
@@ -19,23 +19,100 @@
     </div>
     <img id="line" src="http://7s1sju.com2.z0.glb.qiniucdn.com/grey.png" />
     <div class="wholeList">
+        <!--正常-->
         <div class="list">
+            <img class="discountStatus" src="" />
             <a href="#"><img class="listImage" src="http://7s1sju.com2.z0.glb.qiniucdn.com/重庆北碚悦榕庄.jpg" /></a>
             <img class="tips" src="images/优惠.png" />
             <a href="#"><img class="brand" src="images/订单－下单成功.png"></a>
+            <img class="nojihePlus" src=""/>
+            <img class="jihePlus" src=""/>
+            <p class="pricePlus"><span class="unit"></span></p>
             <img class="priceBackground" src="images/Rectangle%20237.png">
-            <p class="price">2200<span class="unit">&nbsp;&nbsp;元/晚</span></p>
+            <p class="price">2200<span class="unit">&nbsp;&nbsp;起/晚</span></p>
+            <p class="distant">距离123公里</p>
+            <p class="introDiscount">上海绿城花园度假酒店三天两晚含早写到三十个字一二三四五六七八</p>
+            <img class="rank" src="images/2.png" />
+            <p class="discountStatus">活动进行中</p>
+        </div>
+        <!--noPLUS-->
+        <div class="list">
+            <img class="discountStatus" src="" />
+            <a href="#"><img class="listImage" src="http://7s1sju.com2.z0.glb.qiniucdn.com/重庆北碚悦榕庄.jpg" /></a>
+            <img class="tips" src="images/优惠.png" />
+            <a href="#"><img class="brand" src="images/订单－下单成功.png"></a>
+            <img class="nojihePlus" src="images/几何PLUS用户享受更低价.png"/>
+            <img class="jihePlus" src=""/>
+            <p class="pricePlus"><span class="unit"></span></p>
+            <img class="priceBackground" src="images/Rectangle%20237.png">
+            <p class="price">2200<span class="unit">&nbsp;&nbsp;起/晚</span></p>
+            <p class="distant">距离123公里</p>
+            <p class="introDiscount">上海绿城花园度假酒店三天两晚含早写到三十个字一二三四五六七八</p>
+            <img class="rank" src="images/2.png" />
+            <p class="discountStatus">活动进行中</p>
+        </div>
+        <!--PLUS-->
+        <div class="list">
+            <img class="discountStatus" src="" />
+            <a href="#"><img class="listImage" src="http://7s1sju.com2.z0.glb.qiniucdn.com/重庆北碚悦榕庄.jpg" /></a>
+            <img class="tips" src="images/优惠.png" />
+            <a href="#"><img class="brand" src="images/订单－下单成功.png"></a>
+            <img class="nojihePlus" src=""/>
+            <img class="jihePlus" src="images/几何PLUS价%20.png"/>
+            <p class="pricePlus">1800<span class="unit">&nbsp;&nbsp;起/晚</span></p>
+            <img class="priceBackground" src="images/Rectangle%20237.png">
+            <p class="price">2200<span class="unit">&nbsp;&nbsp;起/晚</span></p>
             <p class="distant">距离123公里</p>
             <p class="introDiscount">上海绿城花园度假酒店三天两晚含早写到三十个字一二三四五六七八</p>
             <img class="rank" src="images/2.png" />
             <p class="discountStatus">活动进行中</p>
         </div>
         <div class="list">
+            <img class="discountStatus" src="images/优惠已售罄.png" />
             <a href="#"><img class="listImage" src="http://7s1sju.com2.z0.glb.qiniucdn.com/重庆北碚悦榕庄.jpg" /></a>
-            <img class="tips" src="images/酒店.png" />
+            <img class="tips" src="images/优惠.png" />
             <a href="#"><img class="brand" src="images/订单－下单成功.png"></a>
+            <img class="nojihePlus" src=""/>
+            <img class="jihePlus" src=""/>
+            <p class="pricePlus"><span class="unit"></span></p>
             <img class="priceBackground" src="images/Rectangle%20237.png">
-            <p class="price">2700<span class="unit">&nbsp;&nbsp;元/晚</span></p>
+            <p class="price">2200<span class="unit">&nbsp;&nbsp;起/晚</span></p>
+            <p class="distant">距离123公里</p>
+            <p class="introDiscount">上海绿城花园度假酒店三天两晚含早写到三十个字一二三四五六七八</p>
+            <img class="rank" src="images/2.png" />
+            <p class="discountStatus">优惠已售罄</p>
+        </div>
+        <div class="list">
+            <img class="discountStatus" src="images/优惠已结束.png" />
+            <a href="#"><img class="listImage" src="http://7s1sju.com2.z0.glb.qiniucdn.com/重庆北碚悦榕庄.jpg" /></a>
+            <img class="tips" src="images/优惠.png" />
+            <a href="#"><img class="brand" src="images/订单－下单成功.png"></a>
+            <img class="nojihePlus" src=""/>
+            <img class="jihePlus" src=""/>
+            <p class="pricePlus"><span class="unit"></span></p>
+            <img class="priceBackground" src="images/Rectangle%20237.png">
+            <p class="price">2200<span class="unit">&nbsp;&nbsp;起/晚</span></p>
+            <p class="distant">距离123公里</p>
+            <p class="introDiscount">上海绿城花园度假酒店三天两晚含早写到三十个字一二三四五六七八</p>
+            <img class="rank" src="images/2.png" />
+            <p class="discountStatus">优惠已结束</p>
+        </div>
+        <div class="list">
+            <a class="hotelh5url" href="#"><img class="listImage" src="http://7s1sju.com2.z0.glb.qiniucdn.com/重庆北碚悦榕庄.jpg" /></a>
+            <img class="tips" src="images/酒店.png" />
+            <a class="brandh5url" href="#"><img class="brand" src="images/订单－下单成功.png"></a>
+            <img class="priceBackground" src="images/Rectangle%20237.png">
+            <p class="price">2700<span class="unit">&nbsp;&nbsp;起/晚</span></p>
+            <p class="distant">距离123公里</p>
+            <p class="hotelName">重庆北碚悦榕庄</p>
+            <div class="introHotel"><p>悦榕象征大自然所赋予的放松与舒适,我们以此命名横跨全球的高端酒店,为世界各地的宾客提供感官休憩的度假环境.</p></div>
+        </div>
+        <div class="list">
+            <a class="hotelh5url" href="#"><img class="listImage" src="http://7xio74.com2.z0.glb.clouddn.com/176793" /></a>
+            <img class="tips" src="images/酒店.png" />
+            <a class="brandh5url" href="#"><img class="brand" src="images/订单－下单成功.png"></a>
+            <img class="priceBackground" src="images/Rectangle%20237.png">
+            <p class="price">2700<span class="unit">&nbsp;&nbsp;起/晚</span></p>
             <p class="distant">距离123公里</p>
             <p class="hotelName">重庆北碚悦榕庄</p>
             <div class="introHotel"><p>悦榕象征大自然所赋予的放松与舒适,我们以此命名横跨全球的高端酒店,为世界各地的宾客提供感官休憩的度假环境.</p></div>

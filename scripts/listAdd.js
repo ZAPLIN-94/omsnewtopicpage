@@ -1,20 +1,62 @@
-var hotelContent = "<a href=\"#\"><img class=\"listImage\" src=\"\" /></a><img class=\"tips\" src=\"images/酒店.png\" /><a href=\"#\"><img class=\"brand\" src=\"\"></a><img class=\"priceBackground\" src=\"\"><p class=\"price\"><span class=\"unit\">&nbsp;&nbsp;元/晚</span></p><p class=\"distant\"> </p><p class=\"hotelName\"></p><div class=\"introHotel\"><p></p></div>"
-var productContent = "<a href=\"#\"><img class=\"listImage\" src=\"\" /></a><img class=\"tips\" src=\"images/优惠.png\" /><a href=\"#\"><img class=\"brand\" src=\"\"></a><img class=\"priceBackground\" src=\"images/Rectangle%20237.png\"><p class=\"price\"><span class=\"unit\">&nbsp;&nbsp;元/晚</span></p><p class=\"distant\"> </p><p class=\"introDiscount\"></p><img class=\"rank\" src=\"\" /><p class=\"discountStatus\"></p>"
+var hotelContent = "<a class=\"hotelh5url\" href=\"#\"><img class=\"listImage\" src=\"\" /></a><img class=\"tips\" src=\"images/酒店.png\" /><a class=\"brandh5url\" href=\"#\"><img class=\"brand\" src=\"\"></a><img class=\"priceBackground\" src=\"\"><p class=\"price\"><span class=\"unit\"></span></p><p class=\"distant\"> </p><p class=\"hotelName\"></p><div class=\"introHotel\"><p></p></div>"
+var productContent = "<img class=\"discountStatus\" src=\"\" /><a href=\"#\"><img class=\"listImage\" src=\"\" /></a><img class=\"tips\" src=\"images/优惠.png\" /><a href=\"#\"><img class=\"brand\" src=\"\"></a><img class=\"nojihePlus\" src=\"\"/><img class=\"jihePlus\" src=\"\"/><p class=\"pricePlus\"><span class=\"unit\"></span></p><img class=\"priceBackground\" src=\"images/Rectangle%20237.png\"><p class=\"price\"><span class=\"unit\"> </span></p><p class=\"distant\"> </p><p class=\"introDiscount\"> </p><img class=\"rank\" src=\"\" /><p class=\"discountStatus\"> </p>"
 console.log(hotelContent);
 console.log(productContent);
 
-var $lineAdd = $("<img id='line' src='http://7s1sju.com2.z0.glb.qiniucdn.com/grey.png' />");
-$(".leftblock").append($lineAdd);
+$(document).ready(function(id){
+    var id=2323;
+    $.ajax({
+        type: 'POST',
+        url: 'http://dev.jihelife.com/content/client/topic/detail?',
+        data: {data:'{"id":'+id+'}'},
+        dataType: 'json',
+        async:false,
 
-if(hotelContent){
-    var $listAdd = $("<div class='list'></div>");
-    $(".leftblock").append($listAdd);
-    $("div.leftblock :last-child").append(hotelContent);
-}else if(productContent){
-    var $listAdd = $("<div class='list'></div>");
-    $(".leftblock").append($listAdd);
-    $("div.leftblock :last-child").append(productContent);
-}
+        success: function(data){
+            console.log(data.data.topicBaseInfo.h5body);
+            $("#imgsAndText").prepend(data.data.topicBaseInfo.h5body);
 
-var $endLineAdd = $("<img id='endLine' src='http://7s1sju.com2.z0.glb.qiniucdn.com/The%20End.png' />");
-$(".leftblock").append($endLineAdd);
+            for(var i=0;i<data.data.topicList.length;i++){
+                //判断为酒店
+                if(data.data.topicList[i].objectType == 1){
+                    var h5url=data.data.topicList[i].h5url;
+
+                    console.log(data.data.topicList[i].h5url);
+                    console.log(data.data.topicList[i].referPrice);
+                    var $listAdd = $("<div class='list'></div>");
+                    $("#listPlace").append($listAdd);
+                    $("div#listPlace :last-child").append(hotelContent);
+                    $(".hotelh5url").attr("href",""+data.data.topicList[i].h5url);
+                    $(".listImage").attr("src",""+data.data.topicList[i].imgurl);
+                    //$(".brandh5url").attr("href",""+data.data.topicList[i].)
+                    //$(".brand").attr("src",""+data.data.topicList[i].)
+                    console.log(data.data.topicList[i].referPrice);
+                    $("p.price").prepend(data.data.topicList[i].referPrice);
+                    if(data.data.topicList[i].pieces == 1){
+                        $("span.unit").prepend("&nbsp;&nbsp;"+"起"+"/"+data.data.topicList[i].piecesUnit)
+                    }else{
+                        $("span.unit").prepend("&nbsp;&nbsp;"+"起"+"/"+data.data.topicList[i].pieces+data.data.topicList[i].piecesUnit)
+                    }
+                    //$("p.distant").append("距离"+data.data.topicList[i].distant+"公里")
+                    //$(div.introHotel).append()
+                }
+                //判断为优惠
+                else if(data.data.topicList[i].objectType == 2){
+                    console.log("!23")
+                    var $listAdd = $("<div class='list'></div>");
+                    $("#listPlace").append($listAdd);
+                    $("div#listPlace :last-child").append(productContent);
+                }
+            }
+        },
+        error:function(){},
+    });
+})
+
+
+//$(document).ready(function(){
+//    if($("img.discountStatus").attr("src").length === 0){
+//        $("img.discountStatus").remove();
+//    }
+//})
+

@@ -263,12 +263,60 @@ $(document).ready(function(){
             data: newtopicjson,
             dataType: 'json',
             async:false,
-            success: function(){},
-            error:function(){},
+            success: function(data,status){
+                $.messager.confirm("提示", '提交成功,是否关闭当前窗口？', function (data) {
+                    if (data) {
+                        parent.$('#topic_window').window('close');
+                    }
+                    else {
+                        //把新proID纪录下来，避免再次提交时重复新增
+                        $('#topicId').val(result.topicId );
+                    }
+                });
+            },
+            error:function(){
+                $.messager.show({
+                    title:'提示',
+                    msg:'提交失败.',
+                    timeout:20000,
+                    showType:'slide'
+                })
+            }
         });
 
     })
 });
+
+//检查内容是否都已经填写
+function checkTopicform()
+{
+    if( $('#topicTitle').html().length <=0 )
+    {
+        $.messager.alert('提示','亲，标题不能为空！','error');
+        return false;
+    }
+    //if( $('#topicSubtitle').html().trim().length <=0 )
+    //{
+    //    $.messager.alert('提示','亲，副标题不能为空！','error');
+    //    return false;
+    //}
+    //if( $('#topicAuthor').html().length <=0 )
+    //{
+    //    $.messager.alert('提示','亲，作者不能为空！','error');
+    //    return false;
+    //}
+    if( $('#topimagePreview').attr("src").length <=0  )
+    {
+        $.messager.alert('提示','亲，请至少上传一张图片！','error');
+        return false;
+    }
+    var rows = $('#topic_items').datagrid('getRows');
+    if( rows.length<=0 ) {
+        $.messager.alert('提示','亲，请至少加入一家酒店！','error');
+        return false;
+    }
+    return true;
+}
 
 //提交主题
 function submitNewTopic(){
@@ -317,71 +365,37 @@ function submitNewTopic(){
 
 };
 
-//提交主题内酒店/优惠列表
-function submitTopicItems(topicId){
-
-    var alldata = $('#topic_items').datagrid('getData');
-
-    if (alldata.rows.length > 0)
-    {
-        var effectRow = JSON.stringify(alldata.rows);
+$(function(){
+    var	topicId=GetRequest("id");
+    if( !topicId ){  //新增
+        $('#topicId').val('');
+    }
+    else{
         $.ajax({
-            method : 'POST',
-            url : 'settopicitems.json?id='+topicId,
+            method : 'GET',
+            url : 'prepare.api.jihelife.com:8080/oms/topic/getTopicBaseInfoById.json?id='+id,
             async : false,
             dataType : 'json',
-            data:{data:effectRow},
             success : function(data) {
-                $.messager.show({
-                    title:'提示',
-                    msg:'主题内列表提交成功.',
-                    timeout:5000,
-                    showType:'slide'
-                });
+                $('#topicTitle').remove();
+                $('#topicSubtitle').remove();
+                $('#topicAuthor').remove();
+                $('#titleOfTopic').textbox('setValue',data.title);
+                $('#subtitleOfTopic').textbox('setValue',data.desc);
+                $('#authorOfTopic').textbox('setValue',data.author);
+                $('div.leftblock').append(data.h5body);
             },
             error : function() {
-                $.messager.show({
-                    title:'提示',
-                    msg:'主题内列表提交失败.',
-                    timeout:20000,
-                    showType:'slide'
-                });
+                $('#topicId').val('');
+                $('#newtopic_baseinfo').form('clear');
+                $.messager.alert('修改主题','未能找到主题信息!','error');
             }
+
+        });
+        //加载hotel list细项
+        $('#topic_items').datagrid({
+            url : "getTopicItemsById.json?id="+id,
+            method:'get'
         });
     }
-};
-
-
-function checkTopicform()
-{
-    if( $('#topicTitle').html().length <=0 )
-    {
-        $.messager.alert('提示','亲，标题不能为空！','error');
-        return false;
-    }
-    //if( $('#topicSubtitle').html().trim().length <=0 )
-    //{
-    //    $.messager.alert('提示','亲，副标题不能为空！','error');
-    //    return false;
-    //}
-    //if( $('#topicAuthor').html().length <=0 )
-    //{
-    //    $.messager.alert('提示','亲，作者不能为空！','error');
-    //    return false;
-    //}
-    if( $('#topimagePreview').attr("src").length <=0  )
-    {
-        $.messager.alert('提示','亲，请至少上传一张图片！','error');
-        return false;
-    }
-
-    var rows = $('#topic_items').datagrid('getRows');
-    if( rows.length<=0 ) {
-        $.messager.alert('提示','亲，请至少加入一家酒店！','error');
-        return false;
-    }
-
-    return true;
-}
-
-//.datagrid-cell datagrid-cell-c3-productId"
+})
