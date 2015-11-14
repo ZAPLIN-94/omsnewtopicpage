@@ -165,14 +165,14 @@ function topic_searchhotel(hotelname){
     if( hotelname.length<=0){
         return;
     }
-    $('#topic_searchlist').datagrid({url:'http://oms.jihelife.com:8080/oms/prom/gethotelbyname.json?',queryParams:{hname:hotelname} });
+    $('#topic_searchlist').datagrid({url:'http://dev.jihelife.com:8180/oms/hotel/gethotelbyname.json?',queryParams:{name:hotelname,status:1}});
 }
 //优惠搜索
 function discount_searchhotel(discountname){
     if( discountname.length<=0){
         return;
     }
-    $('#discount_searchlist').datagrid({url:'http://prepare.api.jihelife.com:8080/oms/prom/promlist.json?',queryParams:{productName:discountname} });
+    $('#discount_searchlist').datagrid({url:'http://dev.jihelife.com:8180/oms/prom/promlist.json?',queryParams:{productName:discountname,status:1}});
 }
 
 //上移 下移
@@ -259,7 +259,7 @@ $(document).ready(function(){
 
         $.ajax({
             type: 'POST',
-            url: 'http://prepare.api.jihelife.com:8080/oms/topic/addnewtopic.json',
+            url: 'http://dev.jihelife.com:8180/oms/topic/addnewtopic.json',
             data: newtopicjson,
             dataType: 'json',
             async:false,
