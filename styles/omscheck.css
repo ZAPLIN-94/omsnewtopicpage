@@ -1,0 +1,80 @@
+*{
+    line-height: 1.5em;
+    font-family: "Lantinghei SC","FZLanTingHei-R-GBK";
+    -webkit-text-size-adjust:none;
+    font-size: 12px;
+}
+div#h5body{
+    width: 270px;
+    height: 440px;
+    border-top: 23px solid black;
+    border-left: 3px solid black;
+    border-bottom: 23px solid black;
+    border-right: 3px solid black;
+    position: absolute;
+    overflow-y: scroll;
+    border-radius: 5px;
+}
+#list{
+    width: 270px;
+    height: 480px;
+    border: 3px solid black;
+    position: absolute;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    left: 300px;
+    border-radius: 5px;
+}
+table.gridtable {
+    color:#333333;
+    border-width: 1px;
+    border-color: #666666;
+    border-collapse: collapse;
+}
+table.gridtable tr {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #666666;
+    /*background-color: #dedede;*/
+    overflow-x: hidden;
+
+}
+table.gridtable td {
+    border-width: 1px;
+    padding: 8px;
+    border-style: solid;
+    border-color: #666666;
+    /*background-color: #ffffff;*/
+}
+#topicTitle{
+    width: 92%;
+    margin: 25px 4% 0 4%;
+    font-size: 22px;
+    border: none !important;
+}
+#topicSubtitle{
+    width: 92%;
+    margin: 5px 4% 10px 4%;
+    font-size: 12px;
+    color: #8c8c8c;
+    border: none !important;
+}
+#topicAuthor{
+    width: 92%;
+    margin: 5px 4% 10px 4%;
+    font-size: 12px;
+    color: #8c8c8c;
+    border: none !important;
+}
+.image{
+    width: 92%;
+    margin: 5px 4% 5px 4%;
+}
+.text{
+    width: 92%;
+    margin: 15px 4% 15px 4%;
+    color: #4A4A4A;
+    font-size: 15px;
+    background: none !important;
+}

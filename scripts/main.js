@@ -365,6 +365,7 @@ function submitNewTopic(){
 
 };
 
+//修改主题
 $(function(){
     var	topicId=GetRequest("id");
     if( !topicId ){  //新增
@@ -373,17 +374,17 @@ $(function(){
     else{
         $.ajax({
             method : 'GET',
-            url : 'prepare.api.jihelife.com:8080/oms/topic/getTopicBaseInfoById.json?id='+id,
+            url : 'dev.jihelife.com:8180/oms/topic/getTopicBaseInfoById.json?id='+id,
             async : false,
             dataType : 'json',
             success : function(data) {
                 $('#topicTitle').remove();
                 $('#topicSubtitle').remove();
                 $('#topicAuthor').remove();
-                $('#titleOfTopic').textbox('setValue',data.title);
-                $('#subtitleOfTopic').textbox('setValue',data.desc);
-                $('#authorOfTopic').textbox('setValue',data.author);
-                $('div.leftblock').append(data.h5body);
+                $('#titleOfTopic').textbox('setValue',data.productBaseInfo.productName);
+                $('#subtitleOfTopic').textbox('setValue',data.topicBaseInfo.productDesc);
+                $('#authorOfTopic').textbox('setValue',data.topicBaseInfo.author);
+                $('div.leftblock').append(data.topicBaseInfo.h5body);
             },
             error : function() {
                 $('#topicId').val('');
