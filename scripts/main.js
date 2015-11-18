@@ -374,7 +374,7 @@ $(function(){
     else{
         $.ajax({
             method : 'GET',
-            url : 'dev.jihelife.com:8180/oms/topic/getTopicBaseInfoById.json?id='+id,
+            url : 'http://dev.jihelife.com:8180/oms/topic/getTopicBaseInfoById.json?id='+id,
             async : false,
             dataType : 'json',
             success : function(data) {
