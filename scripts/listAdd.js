@@ -42,7 +42,7 @@ var hotelContent = "<a class=\"hotelh5url\" href=\"#\"><img class=\"listImage\" 
 var productContent = "<img class=\"statusMark\" src=\"\" /><a class=\"discounth5url\" href=\"#\"><img class=\"listImage\" src=\"\" /></a><img class=\"tips\" src=\"images/优惠.png\" /><a class=\"brandh5url\" href=\"#\"><img class=\"brand\" src=\"\"></a><img class=\"nojihePlus\" src=\"\"/><img class=\"jihePlus\" src=\"\"/><p class=\"pricePlus\"><span class=\"unit\"></span></p><img class=\"priceBackground\" src=\"images/Rectangle%20237.png\"><p class=\"price\"><span class=\"unit\"> </span></p><p class=\"distant\"> </p><p class=\"introDiscount\"> </p><img class=\"rank\" src=\"\" /><p class=\"discountStatus\"></p>"
 
 $(document).ready(function(id){
-    var id = 4416;
+    var id = 4418;
     $.ajax({
         type: 'POST',
         url: 'http://dev.jihelife.com/content/client/topic/detail?',
@@ -67,9 +67,9 @@ $(document).ready(function(id){
                     $("div.list:last").find(".brand").attr("src",""+data.data.topicList[i].brandIcon);
                     $("div.list:last").find(".price").prepend(data.data.topicList[i].referPrice);
                     if(data.data.topicList[i].pieces == 1){
-                        $("div.list:last").find("span.unit").prepend("&nbsp;&nbsp;"+"起"+"/"+data.data.topicList[i].piecesUnit);
+                        $("div.list:last").find("span.unit").prepend("&nbsp;&nbsp;"+"起"+"/"+"晚");
                     }else{
-                        $("div.list:last").find("span.unit").prepend("&nbsp;&nbsp;"+"起"+"/"+data.data.topicList[i].pieces+data.data.topicList[i].piecesUnit);
+                        $("div.list:last").find("span.unit").prepend("&nbsp;&nbsp;"+"起"+"/"+data.data.topicList[i].pieces+"晚");
                     }
                     $("div.list:last").find(".distant").append(data.data.topicList[i].distanceDesc);
                     $("div.list:last").find(".hotelName").append(data.data.topicList[i].productName);

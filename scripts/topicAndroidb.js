@@ -3,7 +3,6 @@
 //device.requestCommit(url, andrData);
 
 function Device() {
-
     var requestData = "";
     this.setRequestData = function (_requestData) {
         requestData = _requestData;
@@ -13,8 +12,9 @@ function Device() {
     }
 
     this.requestCommit = function (allUrl, allData) {
-        var yon = window.hasOwnProperty("AndroidObj");
-
+        //var yon = window.hasOwnProperty("AndroidObj");
+        var yon = jihe.hasOwnProperty("getHeaderData");
+        alert(yon);
         // if START--------
         if(yon == false) {//若为false 则不在APP中...
 
@@ -22,7 +22,9 @@ function Device() {
 
         }else {//若为true 在APP中...
             // var testHeader = jihe.getHeaderData(allData);
-            var testHeader = window.AndroidObj.getHeaderData(allData);
+            //var testHeader = window.AndroidObj.getHeaderData(allData);
+            alert(2)
+            var testHeader = jihe.getHeaderData(allData);
             var obj = eval("(" + testHeader + ")");
             $.ajax({
                 type: 'POST',
@@ -38,8 +40,8 @@ function Device() {
                 },
                 success: function (data) {
                     requestData = (data);
-
-                    //-------------操作逻辑-------------
+alert(3);
+//-------------操作逻辑-------------
                     //url处理
                     var url = location.href;
                     host='http://'+window.location.host;
@@ -78,15 +80,17 @@ function Device() {
                     }
                     var r = getParameter("id",url);
                     id =r.substring(r.lastIndexOf('=')+1, r.length);
-
+alert(4);
 //酒店/优惠内容骨架
                     var hotelContent = "<a class=\"hotelh5url\" href=\"#\"><img class=\"listImage\" src=\"\" /></a><img class=\"tips\" src=\"images/酒店.png\" /><a class=\"brandh5url\" href=\"#\"><img class=\"brand\" src=\"\"></a><img class=\"priceBackground\" src=\"images/Rectangle%20237.png\"><p class=\"price\"><span class=\"unit\"></span></p><p class=\"distant\"> </p><p class=\"hotelName\"></p><div class=\"introHotel\"><p></p></div>"
                     var productContent = "<img class=\"statusMark\" src=\"\" /><a class=\"discounth5url\" href=\"#\"><img class=\"listImage\" src=\"\" /></a><img class=\"tips\" src=\"images/优惠.png\" /><a class=\"brandh5url\" href=\"#\"><img class=\"brand\" src=\"\"></a><img class=\"nojihePlus\" src=\"\"/><img class=\"jihePlus\" src=\"\"/><p class=\"pricePlus\"><span class=\"unit\"></span></p><img class=\"priceBackground\" src=\"images/Rectangle%20237.png\"><p class=\"price\"><span class=\"unit\"> </span></p><p class=\"distant\"> </p><p class=\"introDiscount\"> </p><img class=\"rank\" src=\"\" /><p class=\"discountStatus\"></p>"
 
-                    $(document).ready(function(id){
+                    $(document).ready(function(){
+                        //var id = 4418;
+                        alert(5);
                         $.ajax({
                             type: 'POST',
-                            url: 'http://dev.jihelife.com/content/client/topic/detail?',
+                            url: '/content/client/topic/detail?',
                             data: {data:'{"id":'+id+'}'},
                             dataType: 'json',
                             async:false,
@@ -106,11 +110,11 @@ function Device() {
                                         $("div.list:last").find(".listImage").attr("src",""+data.data.topicList[i].imageUrl);
                                         //$("div.list:last").find(".brandh5url").attr("href",""+data.data.topicList[i].)
                                         $("div.list:last").find(".brand").attr("src",""+data.data.topicList[i].brandIcon);
-                                        $("div.list:last").find(".price").prepend(data.data.topicList[i].referPrice);
+                                        $("div.list:last").find(".price").prepend(data.data.topicList[i].price);
                                         if(data.data.topicList[i].pieces == 1){
-                                            $("div.list:last").find("span.unit").prepend("&nbsp;&nbsp;"+"起"+"/"+data.data.topicList[i].piecesUnit);
+                                            $("div.list:last").find("span.unit").prepend("&nbsp;&nbsp;"+"起"+"/"+"晚");
                                         }else{
-                                            $("div.list:last").find("span.unit").prepend("&nbsp;&nbsp;"+"起"+"/"+data.data.topicList[i].pieces+data.data.topicList[i].piecesUnit);
+                                            $("div.list:last").find("span.unit").prepend("&nbsp;&nbsp;"+"起"+"/"+data.data.topicList[i].pieces+"晚");
                                         }
                                         $("div.list:last").find(".distant").append(data.data.topicList[i].distanceDesc);
                                         $("div.list:last").find(".hotelName").append(data.data.topicList[i].productName);
