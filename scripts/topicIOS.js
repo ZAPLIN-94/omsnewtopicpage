@@ -133,7 +133,7 @@ if(isAndroid) {
                         if(data.data.topicList[i].grade == 1){
                             $("div.list:last").find(".rank").attr("src","../h5_2.0/images/1.png");
                         }else if(data.data.topicList[i].grade == 2){
-                            $("div.list:last").find(".rank").attr("src","../h5_2/0images/2.png");
+                            $("div.list:last").find(".rank").attr("src","../h5_2.0/images/2.png");
                         }else{
                             $("div.list:last").find(".rank").attr("src","../h5_2.0/images/3.png");
                         }
