@@ -113,14 +113,14 @@ $(document).ready(function(){
 var imgurl;
 function doUpload(){
     $.ajaxFileUpload({
-        url : 'http://oms.jihelife.com:8080/oms/prom/newimgfile.json',
+        url : '/omsapi/upload/newimgfile.json',
         secureuri : false,
         fileElementId : "fileimg",// 上传控件的id
         dataType : 'json',
         data : {fileID:"fileimg"}, // 其它请求参数
         success:function(data, status){
             //图片上传成功，保存纪录
-            imgurl = "http://7xio74.com2.z0.glb.clouddn.com/"+data.id;
+            imgurl = "http://7xio74.com2.z0.glb.clouddn.com/"+data.data;
             $("#imagePreview").attr("src",imgurl);
         },
         error:function(data, status, e){
@@ -140,16 +140,16 @@ var topimgurl;
 var topImgId;
 function topDoUpload(){
     $.ajaxFileUpload({
-        url : 'http://oms.jihelife.com:8080/oms/prom/newimgfile.json',
+        url : '/omsapi/upload/newimgfile.json',
         secureuri : false,
         fileElementId : "topfileimg",// 上传控件的id
         dataType : 'json',
         data : {fileID:"topfileimg"}, // 其它请求参数
         success:function(data, status){
             //图片上传成功，保存纪录
-            topimgurl = "http://7xio74.com2.z0.glb.clouddn.com/"+data.id;
+            topimgurl = "http://7xio74.com2.z0.glb.clouddn.com/"+data.data;
             $("#topimagePreview").attr("src",topimgurl);
-            topImgId = data.id;
+            topImgId = data.data;
         },
         error:function(data, status, e){
             //服务器响应失败时的处理函
@@ -165,14 +165,14 @@ function topic_searchhotel(hotelname){
     if( hotelname.length<=0){
         return;
     }
-    $('#topic_searchlist').datagrid({url:'http://dev.jihelife.com:8180/oms/hotel/gethotelbyname.json?',queryParams:{name:hotelname,status:1}});
+    $('#topic_searchlist').datagrid({url:'/omsapi/hotel/hotellist.json?',queryParams:{productName:hotelname,status:1}});
 }
 //优惠搜索
 function discount_searchhotel(discountname){
     if( discountname.length<=0){
         return;
     }
-    $('#discount_searchlist').datagrid({url:'http://dev.jihelife.com:8180/oms/prom/promlist.json?',queryParams:{productName:discountname,status:1}});
+    $('#discount_searchlist').datagrid({url:'/omsapi/prom/promlist.json?',queryParams:{productName:discountname,status:1}});
 }
 
 //上移 下移
@@ -252,14 +252,12 @@ $(document).ready(function(){
             "h5body":$("div.leftblock").html(),
             "listItems":listItemProductId
         };
-        console.log(newtopicjson);
 
         if( checkTopicform() ==false)
             return;
-
         $.ajax({
             type: 'POST',
-            url: 'http://dev.jihelife.com:8180/oms/topic/addnewtopic.json',
+            url: '/omsapi/topic/addnewtopic.json',
             data: newtopicjson,
             dataType: 'json',
             async:false,
@@ -318,52 +316,7 @@ function checkTopicform()
     return true;
 }
 
-//提交主题
-function submitNewTopic(){
-    //提交基本信息
-    if( checkTopicform() ==false)
-        return;
 
-    $('#newtopic_baseinfo').form('submit', {
-        url:'addnewtopic.json',
-        success:function(data){
-            var result = eval('('+data+')');
-            if( result.topicId > 0  ){
-
-                submitTopicItems(result.topicId);
-
-                parent.$("#topic_listdg").datagrid('reload');
-
-                $.messager.confirm("提示", '提交成功,是否关闭当前窗口？', function (data) {
-                    if (data) {
-                        parent.$('#topic_window').window('close');
-                    }
-                    else {
-                        //把新proID纪录下来，避免再次提交时重复新增
-                        $('#topicId').val(result.topicId );
-                    }
-                });
-            }
-            else{
-                $.messager.show({
-                    title:'提示',
-                    msg:'提交失败.',
-                    timeout:20000,
-                    showType:'slide'
-                });
-            }
-        },
-        error : function() {
-            $.messager.show({
-                title:'提示',
-                msg:'提交失败.',
-                timeout:20000,
-                showType:'slide'
-            });
-        }
-    });
-
-};
 
 //修改主题
 $(function(){
@@ -374,7 +327,7 @@ $(function(){
     else{
         $.ajax({
             method : 'GET',
-            url : 'http://dev.jihelife.com:8180/oms/topic/getTopicBaseInfoById.json?id='+id,
+            url : '/omsapi/topic/getTopicBaseInfoById.json?id='+id,
             async : false,
             dataType : 'json',
             success : function(data) {

@@ -46,6 +46,16 @@ img#endLine{
     width: 100%;
     margin: 10px 0 0 0 ;
 }
+img#appLink{
+    width: 60%;
+    margin: 10px 20% 30px 20%;
+
+}
+p#appDownload{
+    font-size: 14px;
+    text-align: center;
+    margin: 20px 0 20px 0;
+}
 div.list{
     position: relative;
     width: 100vw;
@@ -129,7 +139,8 @@ p.introDiscount{
     top: 72.5vw;
 }
 img.rank{
-    width: 25vw;
+    /*width: 25vw;*/
+    height: 4.53vw;
     position: relative;
     top: 71vw;
     left: 3.2vw;

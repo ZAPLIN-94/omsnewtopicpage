@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-    <link rel="stylesheet" type="text/css" href="styles/main.css" />
-    <link rel="stylesheet" type="text/css" href="jquery-easyui-1.4.2/themes/default/easyui.css" />
-    <link rel="stylesheet" type="text/css" href="jquery-easyui-1.4.2/themes/icon.css" />
-    <link rel="stylesheet" type="text/css" href="jquery-easyui-1.4.2/demo/demo.css" />
-    <script type="text/javascript" src="jquery-easyui-1.4.2/jquery.min.js"></script>
-    <script type="text/javascript" src="jquery-easyui-1.4.2/jquery.easyui.min.js"></script>
-    <script type="text/javascript" src="scripts/ajaxfileupload.js"></script>
+    <link rel="stylesheet" type="text/css" href="../oms/css/newtopicmain.css" />
+    <link rel="stylesheet" type="text/css" href="../oms/jquery-easyui-1.4.2/themes/default/easyui.css" />
+    <link rel="stylesheet" type="text/css" href="../oms/jquery-easyui-1.4.2/themes/icon.css" />
+    <link rel="stylesheet" type="text/css" href="../oms/jquery-easyui-1.4.2/demo/demo.css" />
+    <script type="text/javascript" src="../oms/jquery-easyui-1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../oms/jquery-easyui-1.4.2/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="../oms/js/ajaxfileupload.js"></script>
     <title>新增主题</title>
 </head>
 <body>
     <input id="topicId" name="topicId" hidden="true" />
 <!--左边 展示框-->
     <div class="leftblock" contenteditable="true">
-        <p id="topicTitle" style="border: 1px solid black" contenteditable="false"></p>
-        <p id="topicSubtitle" style="border: 1px solid black" contenteditable="false"></p>
-        <p id="topicAuthor" style="border: 1px solid black" contenteditable="false"></p>
+        <p id="topicTitle" contenteditable="false"></p>
+        <p id="topicSubtitle" contenteditable="false"></p>
+        <p id="topicAuthor" contenteditable="false"></p>
+        <!--<img src="http://tse1.mm.bing.net/th?&id=OIP.M8632d36c78dc62e1b0f5a876d11b7081o0&w=300&h=300&c=0&pid=1.9&rs=0&p=0">-->
     </div>
 <!--中间 主题名称、副标题添加；图片、文字插入-->
     <div>
@@ -44,10 +45,11 @@
                 <a href="javascript:" class="file">选择图片
                     <input type="file" name="topfileimg" id="topfileimg">
                 </a>
-                <input type="button" id="topimagePush" value="图片上传" />
+                <!--<input type="button" id="topimagePush" value="图片上传" />-->
+                <button type="button" id="topimagePush" >图片上传</button>
             </td>
             <td>
-                <img id="topimagePreview"  style="height: 8em;width: 10em"/>
+                <img id="topimagePreview" />
             </td>
         </tr>
         <!--图片插入-->
@@ -56,11 +58,12 @@
                 <a href="javascript:" class="file">选择图片
                     <input type="file" name="fileimg" id="fileimg">
                 </a>
-                <input type="button" id="imagePush" value="图片上传" />
+                <!--<input type="button" id="imagePush" value="图片上传" />-->
+                <button type="button" id="imagePush">图片上传</button>
                 <button type="button" id="imageAdd" >图片插入</button>
             </td>
             <td>
-                <img id="imagePreview"  style="height: 8em;width: 10em"/>
+                <img id="imagePreview" />
             </td>
         </tr>
         <!--文字插入-->
@@ -69,7 +72,7 @@
                 <button type="button" id="textSubmit">文字插入</button>
             </td>
 
-            <td><textarea id="textAdd" autofocus="autofocus" style="height: 100%"></textarea></td>
+            <td><textarea id="textAdd" autofocus="autofocus"></textarea></td>
         </tr>
         <td colspan="2">
             <div class="totalButton">
@@ -93,25 +96,25 @@
             <td>
                 <table class="easyui-datagrid" id="topic_searchlist" style="width:220px;height:180px"
                        data-options="singleSelect:true,collapsible:true,onDblClickRow: function (rowIndex, rowData) {
-
+                       console.log(rowData);
                 var rows = $('#topic_items').datagrid('getRows');
                 for(var i=0; i<rows.length; i++){
-                    if( rows[i].productId == rowData.hotelId ){
+                    if( rows[i].productId == rowData.productId ){
                         $.messager.alert('提示','亲，该酒店已经入选','info');
                         return;
                     }
                 }
                 $('#topic_items').datagrid('insertRow',{index:0,row:{
-                productId:rowData.hotelId,
-                productName:rowData.hotelCname
+                productId:rowData.productId,
+                productName:rowData.productName
                 }
                 });
 
             }">
                     <thead>
                     <tr>
-                        <th data-options="field:'hotelId'">ID</th>
-                        <th data-options="field:'hotelCname'">酒店名称</th>
+                        <th data-options="field:'productId'">ID</th>
+                        <th data-options="field:'productName'">酒店名称</th>
                     </tr>
                     </thead>
                 </table>
@@ -170,6 +173,6 @@
         </tr>
     </table>
 
-<script type="text/javascript" src="scripts/main.js"></script>
+<script type="text/javascript" src="../oms/js/newtopicmain.js"></script>
 </body>
 </html>
