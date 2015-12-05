@@ -1,5 +1,4 @@
 $(document).ready(function(id){
-    var id=4411;
     $.ajax({
         type: 'GET',
         url: 'http://dev.jihelife.com:8180/oms/topic/getTopicBaseInfoById.json?id='+id,

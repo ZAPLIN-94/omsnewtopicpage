@@ -8,7 +8,7 @@
     -webkit-text-size-adjust:none;
 }
 /*img{*/
-    /*display: block;*/
+/*display: block;*/
 /*}*/
 span{
     letter-spacing: 0.1em;
@@ -42,7 +42,7 @@ span{
 }
 img#line{
     width: 100%;
-    height: 4vw;
+    height: 0.938em;
     margin: 10px 0 -10px 0 ;
 }
 img#endLine{
@@ -61,44 +61,44 @@ p#appDownload{
 }
 div.list{
     position: relative;
-    width: 100vw;
-    height: 96vw;
+    width: 100%;
+    height: 22.5rem;
 }
 img.listImage{
     width: 100%;
     position: absolute;
     left: 0;
     top: 0;
-    height: 64vw;
+    height: 15rem;
 
 }
 img.statusMark{
     width: 100%;
-    height: 64vw;
+    height: 15rem;
     position: absolute;
     left: 0;
     top: 0;
     z-index: 10;
 }
 p.pricePlus{
-    width: 36vw;
-    height: 9vw;
+    width: 8.44rem;
+    height: 2.11rem;
     font-size: 19px;
     color: white;
     position: absolute;
-    top: 39vw;
+    top: 9.14rem;
     left: 0;
     vertical-align: middle;
     text-align: center;
     padding: 0.5% 0 0 0 ;
 }
 p.price{
-    width: 36vw;
-    height: 9vw;
+    width: 8.44rem;
+    height: 2.11rem;
     font-size: 19px;
     color: white;
     position: absolute;
-    top: 48vw;
+    top: 11.25rem;
     left: 0;
     vertical-align: middle;
     text-align: center;
@@ -108,45 +108,45 @@ span.unit{
     font-size: 12px;
 }
 img.priceBackground{
-    width: 36vw;
-    height: 9vw;
+    width: 8.44rem;
+    height: 2.11rem;
     position: absolute;
-    top: 48vw;
+    top: 11.25rem;
     left: 0;
 }
 img.tips{
-    width: 8.3vw;
+    width: 1.95rem;
     position: absolute;
-    left: 3.2vw;
-    top: 66.67vw;
+    left: 0.75rem;
+    top: 15.63rem;
 }
 img.brand{
     position: absolute;
-    top: 57.33vw;
-    left: 82.67vw;
-    width: 13.2vw;
+    top: 13.44rem;
+    right: 1.875rem;
+    width: 3.09rem;
     z-index: 999;
 }
 p.distant{
     font-size: 12px;
     color: #8c8c8c;
     position: absolute;
-    left: 14.5vw;
-    top: 67.5vw;
+    left: 3.40rem;
+    top: 15.82rem;
 }
 p.introDiscount{
     width: 93.6%;
     margin: 0 3.2% 0 3.2%;
     font-size: 16px;
     position: relative;
-    top: 72.5vw;
+    top: 16.99rem;
 }
 img.rank{
     /*width: 25vw;*/
-    height: 4.53vw;
+    height: 1.06rem;
     position: relative;
-    top: 71vw;
-    left: 3.2vw;
+    top: 16.64rem;
+    left: 0.75rem;
     margin: 2.4% 0 2.4% 0;
 }
 p.discountStatus{
@@ -155,13 +155,13 @@ p.discountStatus{
     color: #8c8c8c;
     position: relative;
     float: right;
-    top: 74vw;
+    top: 17.34rem;
 }
 p.hotelName{
-    width: 95vw;
+    width: 18rem;
     position: relative;
-    top: 72.5vw;
-    left: 3.2vw;
+    top: 16.99rem;
+    left: 0.75rem;
 }
 div.introHotel {
     font-size: 12px;
@@ -169,7 +169,7 @@ div.introHotel {
     width: 93.6%;
     margin: 0 3.2% 0 3.2%;
     position: relative;
-    top: 73vw;
+    top: 17.11rem;
 }
 div.introHotel p{
     font-size: 12px;
@@ -181,14 +181,14 @@ div.introHotel p{
 }
 
 .nojihePlus{
-    width: 36vw;
+    width: 8.44rem;
     position: absolute;
-    top: 41.33vw;
+    top: 9.69rem;
     left: 0;
 }
 .jihePlus{
-    width: 36vw;
+    width: 8.44rem;
     position: absolute;
-    top: 34.667vw;
+    top: 8.13rem;
     left: 0;
 }

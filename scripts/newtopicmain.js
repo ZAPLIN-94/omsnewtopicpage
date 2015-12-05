@@ -320,11 +320,13 @@ function checkTopicform()
 
 //修改主题
 $(function(){
-    var	topicId=GetRequest("id");
-    if( !topicId ){  //新增
-        $('#topicId').val('');
-    }
-    else{
+    var id = $("tr.datagrid-row-selected").length;
+    console.log(id);
+    //var	topicId=GetRequest("id");
+    //if( !topicId ){  //新增
+    //    $('#topicId').val('');
+    //}
+    //else{
         $.ajax({
             method : 'GET',
             url : '/omsapi/topic/getTopicBaseInfoById.json?id='+id,
@@ -350,6 +352,7 @@ $(function(){
         $('#topic_items').datagrid({
             url : "getTopicItemsById.json?id="+id,
             method:'get'
-        });
-    }
+        }
+        );
+    //}
 })

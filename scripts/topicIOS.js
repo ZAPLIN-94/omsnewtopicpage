@@ -85,7 +85,7 @@ if(isAndroid) {
                             $("div.list:last").find(".brand").attr("src",""+data.data.topicList[i].brandIcon);
                             if(data.data.topicList[i].price == -1){
                                 $("div.list:last").find(".price").empty();
-                                $("div.list:last").find(".priceBackground").remove;
+                                $("div.list:last").find(".priceBackground").remove();
                             }else{
                                 $("div.list:last").find(".price").prepend(data.data.topicList[i].price);
                                 if(data.data.topicList[i].pieces == 1){

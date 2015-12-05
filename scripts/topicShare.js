@@ -68,7 +68,8 @@ $(document).ready(function(){
                         $("div.list:last").find(".brand").attr("src",""+data.data.topicList[i].brandIcon);
                         if(data.data.topicList[i].price == -1){
                             $("div.list:last").find(".price").empty();
-                            $("div.list:last").find(".priceBackground").remove;
+                            $("div.list:last").find(".priceBackground").remove();
+
                         }else{
                             $("div.list:last").find(".price").prepend(data.data.topicList[i].price);
                             if(data.data.topicList[i].pieces == 1){
@@ -154,13 +155,13 @@ var isiOS = !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
 
 $(document).ready(function(){
 
-    $("img#appLine").click(function(){
+    $("img#appLink").click(function(){
             window.location="/h5_2.0/tiao.html?id="+id;
         }
     );
 
     if(isAndroid){
-        $("img#appLine").attr("src","http://7xio74.com2.z0.glb.qiniucdn.com/leapp_andor.png");
+        $("img#appLink").attr("src","http://7xio74.com2.z0.glb.qiniucdn.com/leapp_andor.png");
     }
 });
 
